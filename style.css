@@ -475,3 +475,43 @@ p { margin-bottom: 16px; font-size: 16px; color: var(--text-main); opacity: 0.9;
     .footer { text-align: center; margin-bottom: 40px; }
     .preloader-text { font-size: 40px; } /* Adjust font size for mobile */
 }
+
+/* --- CUSTOM CURSOR --- */
+#custom-cursor {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 20px; 
+    height: 20px;
+    border: 1px solid var(--text-main);
+    background-color: var(--text-main);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background-color 0.2s, transform 0.1s;
+    mix-blend-mode: difference; /* This creates the cool inverted color effect */
+}
+
+/* Hover State (When over links/buttons) */
+#custom-cursor.hovered {
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border-color: var(--text-main);
+    border-width: 2px;
+}
+
+/* Hide default cursor and use custom one on Desktop only */
+@media (min-width: 768px) {
+    body, a, button, .theme-toggle-btn, .skill-box {
+        cursor: none !important; /* Forces hiding the default arrow */
+    }
+}
+
+/* Hide custom cursor on Mobile (Touch devices) */
+@media (max-width: 768px) {
+    #custom-cursor {
+        display: none;
+    }
+}

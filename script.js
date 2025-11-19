@@ -182,3 +182,26 @@ if (counterElement) {
         window.requestAnimationFrame(step);
     }
 }
+
+// 6. CUSTOM CURSOR LOGIC
+const cursor = document.getElementById('custom-cursor');
+
+if (window.matchMedia("(min-width: 768px)").matches) {
+    // Move cursor with mouse
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+
+    // Add hover effect to all clickable elements
+    const clickableElements = document.querySelectorAll('a, button, .skill-box, .theme-toggle-btn, #tiltContainer');
+
+    clickableElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.classList.add('hovered');
+        });
+        el.addEventListener('mouseleave', () => {
+            cursor.classList.remove('hovered');
+        });
+    });
+}
