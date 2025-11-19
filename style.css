@@ -41,6 +41,33 @@
     --selection-text: #111111;
 }
 
+/* --- SECRET HACKER THEME --- */
+[data-theme="hacker"] {
+    --bg: #000000; 
+    --text-main: #00ff41;
+    --text-muted: #008f11;
+    --border: #003b00;
+    --card-hover: #0d0208;
+    --accent: #00ff41;
+    
+    --skill-bg: rgba(0, 255, 65, 0.1);
+    --skill-border: #003b00;
+    --skill-hover-bg: #00ff41;
+    --skill-hover-text: #000000;
+    
+    --toggle-bg: #003b00;
+    --shadow: rgba(0, 255, 65, 0.2);
+
+    --connect-link-color: #00ff41;
+    --selection-bg: #00ff41;
+    --selection-text: #000000;
+}
+
+[data-theme="hacker"] body {
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: -0.5px;
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html {
@@ -66,21 +93,56 @@ body {
     animation: fadeIn 0.8s ease-out;
 }
 
-/* Prevent scrolling during preloader */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+
+/* --- CUSTOM CURSOR (FIXED) --- */
+#custom-cursor {
+    position: fixed;
+    top: 0; left: 0;
+    width: 20px; height: 20px;
+    background-color: var(--text-main);
+    border: 1px solid var(--text-main);
+    border-radius: 50%;
+    pointer-events: none; /* Critical: Allows clicking through the circle */
+    z-index: 20000; /* Critical: Sits on top of EVERYTHING */
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background-color 0.2s;
+    mix-blend-mode: difference; /* Inverts colors */
+    display: none; /* Hidden by default */
+}
+
+/* Hover State */
+#custom-cursor.hovered {
+    width: 50px; height: 50px;
+    background-color: transparent;
+    border-width: 2px;
+}
+
+/* FORCE HIDE DEFAULT MOUSE ON DESKTOP */
+@media (min-width: 768px) {
+    #custom-cursor {
+        display: block; /* Show custom cursor */
+    }
+    /* Hide default arrow on everything */
+    html, body, a, button, input, textarea, .theme-toggle-btn {
+        cursor: none !important;
+    }
+}
+
+
+/* --- PRELOADER & LOCK SCROLL --- */
 body.no-scroll {
     overflow: hidden;
 }
 
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-/* --- PRELOADER STYLES --- */
 #preloader {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100vh;
-    background: var(--text-main); /* Inverted colors for impact */
+    background: var(--text-main);
     color: var(--bg);
-    z-index: 10000; /* Above everything */
+    z-index: 10000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -101,6 +163,7 @@ body.no-scroll {
     0% { opacity: 0; transform: translateY(20px); }
     100% { opacity: 1; transform: translateY(0); }
 }
+
 
 /* --- VIEW TRANSITION ANIMATION --- */
 ::view-transition-old(root),
@@ -200,7 +263,7 @@ h1 {
     font-size: 16px;
 }
 
-/* --- STATUS DOT: BREATHING GLOW --- */
+/* --- STATUS DOT --- */
 .status-dot {
     width: 10px; 
     height: 10px;
@@ -212,18 +275,9 @@ h1 {
 }
 
 @keyframes breathing {
-    0% {
-        transform: scale(0.95);
-        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-    }
-    70% {
-        transform: scale(1);
-        box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
-    }
-    100% {
-        transform: scale(0.95);
-        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
-    }
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
 }
 
 .live-age-badge {
@@ -374,6 +428,43 @@ p { margin-bottom: 16px; font-size: 16px; color: var(--text-main); opacity: 0.9;
     padding-left: 20px;
 }
 
+/* --- PROJECTS GRID --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+.project-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+.project-card:hover {
+    border-color: var(--text-main);
+    background: var(--card-hover);
+    transform: translateY(-4px);
+    box-shadow: 0 5px 15px var(--shadow);
+}
+.project-header {
+    display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;
+}
+.project-header h3 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 600; color: var(--text-main);
+}
+.project-links { display: flex; gap: 12px; }
+.project-links a {
+    color: var(--text-muted); font-size: 16px; transition: color 0.2s, transform 0.2s;
+}
+.project-links a:hover { color: var(--text-main); transform: scale(1.2); }
+.project-desc { font-size: 14px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.6; }
+.project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.project-tags span {
+    font-family: 'Space Grotesk', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;
+    padding: 4px 10px; border-radius: 4px; background: var(--skill-bg); color: var(--text-main); border: 1px solid var(--skill-border);
+}
+
 /* --- SKILLS GRID --- */
 .skills-wrapper {
     display: grid;
@@ -411,6 +502,36 @@ p { margin-bottom: 16px; font-size: 16px; color: var(--text-main); opacity: 0.9;
 .skill-box:hover i.devicon-react-original { color: #61DAFB; }
 .skill-box:hover i.devicon-tailwindcss-original { color: #06B6D4; }
 .skill-box:hover i.devicon-git-plain { color: #F05032; }
+
+/* --- CONNECT OPTIONS & EMAIL --- */
+.connect-options {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+}
+.email-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 10px 16px;
+    border-radius: 50px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 8px;
+    transition: all 0.3s ease;
+}
+.email-btn:hover {
+    color: var(--text-main); border-color: var(--text-main);
+    transform: translateY(-2px); background: var(--card-hover);
+}
+#toast {
+    position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%) translateY(100px);
+    background: var(--text-main); color: var(--bg); padding: 12px 24px; border-radius: 8px;
+    font-family: 'Space Grotesk', sans-serif; font-size: 14px; opacity: 0; transition: all 0.4s ease; z-index: 20000;
+}
+#toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 
 /* --- CONNECT LINK --- */
 .connect-link {
@@ -455,6 +576,35 @@ p { margin-bottom: 16px; font-size: 16px; color: var(--text-main); opacity: 0.9;
     font-size: 13px;
     font-family: 'Space Grotesk', sans-serif;
     opacity: 0.6;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+}
+
+.funny-note {
+    font-size: 12px;
+    margin-bottom: 0;
+    opacity: 0.8;
+}
+
+.panic-text {
+    display: inline-block;
+    cursor: crosshair;
+    border-bottom: 1px dashed var(--text-muted);
+    transition: color 0.2s;
+}
+.panic-text:hover {
+    animation: wiggle 0.3s ease infinite;
+    color: #ef4444; /* Warning Red */
+    border-bottom-style: solid;
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    75% { transform: rotate(5deg); }
 }
 
 @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
@@ -473,45 +623,6 @@ p { margin-bottom: 16px; font-size: 16px; color: var(--text-main); opacity: 0.9;
     .connect-link { font-size: 22px; }
     .connect-link .x-icon { font-size: 20px; }
     .footer { text-align: center; margin-bottom: 40px; }
-    .preloader-text { font-size: 40px; } /* Adjust font size for mobile */
-}
-
-/* --- CUSTOM CURSOR --- */
-#custom-cursor {
-    position: fixed;
-    top: 0; 
-    left: 0;
-    width: 20px; 
-    height: 20px;
-    border: 1px solid var(--text-main);
-    background-color: var(--text-main);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: width 0.2s, height 0.2s, background-color 0.2s, transform 0.1s;
-    mix-blend-mode: difference; /* This creates the cool inverted color effect */
-}
-
-/* Hover State (When over links/buttons) */
-#custom-cursor.hovered {
-    width: 50px;
-    height: 50px;
-    background-color: transparent;
-    border-color: var(--text-main);
-    border-width: 2px;
-}
-
-/* Hide default cursor and use custom one on Desktop only */
-@media (min-width: 768px) {
-    body, a, button, .theme-toggle-btn, .skill-box {
-        cursor: none !important; /* Forces hiding the default arrow */
-    }
-}
-
-/* Hide custom cursor on Mobile (Touch devices) */
-@media (max-width: 768px) {
-    #custom-cursor {
-        display: none;
-    }
+    
+    .preloader-text { font-size: 40px; }
 }
