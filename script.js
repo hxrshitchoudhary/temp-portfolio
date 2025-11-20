@@ -49,25 +49,37 @@ updateLocalTime();
 setInterval(updateLocalTime, 60000);
 
 
-// 3. 3D Tilt Effect
+// 3. ROBUST 3D TILT EFFECT
 const tiltContainer = document.getElementById('tiltContainer');
 const tiltImage = document.getElementById('tiltImage');
 
-if (tiltContainer && tiltImage && window.matchMedia("(min-width: 768px)").matches) {
+if (tiltContainer && tiltImage) {
+    // Mouse Move Event
     tiltContainer.addEventListener('mousemove', (e) => {
+        // Only run on desktop (> 768px)
+        if (window.innerWidth < 768) return;
+
         const rect = tiltContainer.getBoundingClientRect();
+        
+        // Calculate mouse position relative to the element
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        const xRotation = -((y - rect.height/2) / rect.height * 15); 
-        const yRotation = ((x - rect.width/2) / rect.width * 15);
+        
+        // Calculate rotation (Limit to 20 degrees)
+        const xRotation = -((y - rect.height / 2) / rect.height * 20); 
+        const yRotation = ((x - rect.width / 2) / rect.width * 20);
+        
+        // Apply transform directly
+        // We remove transition temporarily so the movement follows the mouse instantly
         tiltImage.style.transition = 'none'; 
-        tiltImage.style.transform = `rotateX(${xRotation}deg) rotateY(${yRotation}deg) scale(1.03)`;
-        tiltImage.style.filter = 'grayscale(0%) contrast(105%)'; 
+        tiltImage.style.transform = `perspective(1000px) rotateX(${xRotation}deg) rotateY(${yRotation}deg) scale(1.05)`;
     });
+
+    // Mouse Leave Event (Reset)
     tiltContainer.addEventListener('mouseleave', () => {
-        tiltImage.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), filter 0.4s ease'; 
-        tiltImage.style.transform = 'rotateX(0) rotateY(0) scale(1)';
-        tiltImage.style.filter = 'grayscale(100%) contrast(90%)';
+        // Add transition back for a smooth reset
+        tiltImage.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+        tiltImage.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
     });
 }
 
@@ -135,36 +147,19 @@ if (counterElement) {
 }
 
 
-// 6. CUSTOM CURSOR LOGIC
-const cursor = document.getElementById('custom-cursor');
-if (cursor && window.matchMedia("(min-width: 768px)").matches) {
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-    });
-    const clickables = document.querySelectorAll('a, button, .skill-box, .theme-toggle-btn, .avatar-container');
-    clickables.forEach(el => {
-        el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
-        el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
-    });
-    document.addEventListener('mousedown', () => cursor.style.transform = 'translate(-50%, -50%) scale(0.8)');
-    document.addEventListener('mouseup', () => cursor.style.transform = 'translate(-50%, -50%) scale(1)');
-}
-
-
-// 7. EMAIL COPY
+// 6. EMAIL COPY
 const emailBtn = document.getElementById('copyEmailBtn');
 const toast = document.getElementById('toast');
 if (emailBtn) {
     emailBtn.addEventListener('click', () => {
-        navigator.clipboard.writeText('harshitchoudhary@example.com'); // REPLACE THIS
+        navigator.clipboard.writeText('hxrshitchoudhary@gmail.com'); // REPLACE THIS
         toast.classList.add('show');
         setTimeout(() => { toast.classList.remove('show'); }, 3000);
     });
 }
 
 
-// 8. KONAMI CODE (Hacker Mode)
+// 7. KONAMI CODE (Hacker Mode)
 const konamiCode = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"];
 let konamiIndex = 0;
 document.addEventListener("keydown", (e) => {
