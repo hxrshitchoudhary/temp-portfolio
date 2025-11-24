@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harshit Choudhary</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle Dark Mode">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+    <div class="wrapper">
+        <aside class="profile-section">
+            <div class="avatar-container" id="tiltContainer">
+                <img src="logo.jpg" alt="Harshit" class="avatar" id="tiltImage">
+            </div>
+            <h1>Harshit Choudhary</h1>
+            <div class="role-container">
+                <div class="status-dot"></div>
+                <div class="role">Aspiring Web Developer</div>
+            </div>
+            <div class="live-age-badge">
+                <i class="fa-solid fa-earth-americas"></i>
+                <span style="margin-left:6px;">
+                    <span id="age-counter">22.000000000</span> years on earth
+                </span>
+            </div>
+            <div class="social-links">
+                <a href="https://x.com/hxrshtchoudhary" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://github.com/hxrshitchoudhary" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/hxrshitchoudhary/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+            <div class="visit-counter-wrapper">
+                <div class="visit-counter">
+                    <i class="fa-regular fa-eye"></i>
+                    <span id="visit-count">...</span>
+                    <span>views</span>
+                </div>
+            </div>
+        </aside>
+        <main class="content-section">
+            <div class="block">
+                <div class="section-header">01 / About</div>
+                <p>
+                    I am a student developer exploring the world of
+                    <span class="highlight">web engineering</span> and <span class="highlight">interface design</span>.
+                </p>
+                <p>
+                    Currently based in India, I am dedicating my time to mastering the modern web stack. I enjoy the
+                    process of turning ideas into working code.
+                </p>
+            </div>
+            <div class="block">
+                <div class="section-header">02 / The Grid</div>
+                <div class="new-bento-grid">
+                    <div class="bento-box tech-marquee-box">
+                        <div class="box-header">
+                            <i class="fa-solid fa-microchip"></i>
+                            <span>Tech Stack</span>
+                        </div>
+                        <div class="marquee-wrapper">
+                            <div class="marquee-content">
+                                <i class="devicon-html5-plain colored"></i>
+                                <i class="devicon-css3-plain colored"></i>
+                                <i class="devicon-javascript-plain colored"></i>
+                                <i class="devicon-vercel-original"></i>
+                                <i class="devicon-git-plain colored"></i>
+                                <i class="devicon-github-original"></i>
+                                <i class="devicon-html5-plain colored"></i>
+                                <i class="devicon-css3-plain colored"></i>
+                                <i class="devicon-javascript-plain colored"></i>
+                                <i class="devicon-react-original colored"></i>
+                                <i class="devicon-tailwindcss-original colored"></i>
+                                <i class="devicon-vercel-original"></i>
+                                <i class="devicon-git-plain colored"></i>
+                                <i class="devicon-github-original"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bento-box map-box">
+                        <div id="leaflet-map"></div>
+                        <div class="map-overlay">
+                            <div class="map-details">
+                                <span class="map-city">Greater Noida</span>
+                                <span class="map-coords">28.47°N, 77.50°E</span>
+                            </div>
+                            <div class="map-time-badge">
+                                <div class="pulsing-dot"></div>
+                                <span id="location-time">--:--</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bento-box github-box">
+                        <div class="box-header">
+                            <i class="fa-brands fa-github-alt"></i>
+                            <span>Contributions</span>
+                        </div>
+                        <div class="gh-chart-wrapper">
+                            <img id="gh-chart" alt="Github Chart" class="gh-chart" />
+                        </div>
+                        <a href="https://github.com/hxrshitchoudhary" target="_blank" class="gh-link-overlay"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="block">
+                <div class="section-header">03 / Experience</div>
+                <div class="timeline-item">
+                    <div class="tl-left">
+                        <h3>Independent Developer</h3>
+                        <span class="tl-desc">
+                            Exploring the modern web stack.
+                            I am actively learning how to build better user interfaces
+                            by experimenting with new frameworks and design patterns. Currently Building hxrshit.lol and
+                            few other projects will be added to the project section soon.
+                        </span>
+                    </div>
+                    <div class="tl-right">2024 — Present</div>
+                </div>
+            </div>
+            <div class="block">
+                <div class="section-header">04 / Education</div>
+                <div class="timeline-item">
+                    <div class="tl-left">
+                        <h3>Bachelor of Technology (CSE)</h3>
+                        <span class="tl-desc">Galgotias University, Greater Noida</span>
+                    </div>
+                    <div class="tl-right">2024 — 2028</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="tl-left">
+                        <h3>High School</h3>
+                        <span class="tl-desc">Mount Litera Zee School, Roorkee</span>
+                    </div>
+                    <div class="tl-right">2015 — 2022</div>
+                </div>
+            </div>
+            <div class="block" style="margin-top: 80px;">
+                <div class="section-header">05 / Connect</div>
+                <p>Interested in working together?</p>
+                <div class="connect-options">
+                    <a href="https://x.com/hxrshtchoudhary" target="_blank" class="connect-link">
+                        <span>say hello on</span>
+                        <i class="fa-brands fa-x-twitter x-icon"></i>
+                    </a>
+                    <button id="copyEmailBtn" class="email-btn">
+                        <i class="fa-regular fa-copy"></i> Copy Email
+                    </button>
+                    <div id="toast">Email copied to clipboard!</div>
+                </div>
+            </div>
+            <footer class="footer">
+                <p class="funny-note">
+                    Made with HTML, CSS, JS & <span class="panic-text" title="send help">pure panic</span>.
+                </p>
+                <p>© 2025 Harshit Choudhary. All rights reserved.</p>
+            </footer>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
