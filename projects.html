@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Harshit Choudhary</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .page-header { margin-bottom: 60px; }
+        .page-header h1 { font-size: 48px; margin-top: 24px; font-family: 'Geist', sans-serif; letter-spacing: -0.03em;}
+        .projects-wrapper { max-width: 900px; margin: 0 auto; padding: 80px 24px; }
+        
+        /* Custom style for the coming soon box */
+        .coming-soon-box {
+            padding: 80px 20px;
+            text-align: center;
+            border: 1px dashed var(--border);
+            border-radius: 12px;
+            background: transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle Dark Mode">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+
+    <div class="projects-wrapper">
+        <header class="page-header">
+            <a href="index.html" class="email-btn" style="display: inline-flex; width: max-content; text-decoration: none;">
+                <i class="fa-solid fa-arrow-left" style="margin-right: 8px;"></i> Back to Home
+            </a>
+            <h1>Projects.</h1>
+            <p style="font-size: 18px; color: var(--text-muted);">A showcase of my freelance client work and personal technical experiments.</p>
+        </header>
+
+        <div class="block">
+            <div class="section-header">Freelance Projects</div>
+            <div class="projects-grid">
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/projectspreview/project-preview-1.jpg" alt="Brainrot Media preview" onerror="this.src='https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop'">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Brainrot Media</h3>
+                            <div class="project-links">
+                                <a href="https://brainrot-media.vercel.app/" target="_blank" aria-label="Live Project"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                <a href="https://github.com/hxrshitchoudhary/Brainrot-Media" target="_blank" aria-label="GitHub Repo"><i class="fa-brands fa-github"></i></a>
+                            </div>
+                        </div>
+                        <p class="project-desc">A dynamic media agency landing page built with React and heavily optimized with Framer Motion animations.</p>
+                        <div class="project-tech">
+                            <span>React</span><span>Framer</span> 
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/projectspreview/project-preview-2.jpg" alt="Koncave Anchor Fastners preview" onerror="this.src='https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=600&auto=format&fit=crop'">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Koncave Anchor Fastners</h3>
+                            <div class="project-links">
+                                <a href="https://koncave-anchor-fastners.vercel.app/" target="_blank" aria-label="Live Project"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                <a href="https://github.com/hxrshitchoudhary/Koncave-Anchor-Fastners" target="_blank" aria-label="GitHub Repo"><i class="fa-brands fa-github"></i></a>
+                            </div>
+                        </div>
+                        <p class="project-desc">A business landing page tailored for Koncave, featuring a modern, responsive design and streamlined user interface.</p>
+                        <div class="project-tech">
+                            <span>React</span><span>Tailwind</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="block" style="margin-top: 80px;">
+            <div class="section-header">Personal Projects</div>
+            
+            <div class="coming-soon-box">
+                <i class="fa-solid fa-laptop-code" style="font-size: 32px; color: var(--text-muted); opacity: 0.5;"></i>
+                <div style="font-family: 'Geist', sans-serif; font-size: 18px; color: var(--text-main); font-weight: 600;">Coming Soon</div>
+                <p style="color: var(--text-muted); font-size: 14px; max-width: 320px; margin: 0;">I'm currently cooking up some new personal projects in the background. Check back soon!</p>
+            </div>
+            
+        </div>
+        
+        <footer class="footer" style="margin-top: 100px;">
+            <p>© 2026 Harshit Choudhary. All rights reserved.</p>
+        </footer>
+
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
